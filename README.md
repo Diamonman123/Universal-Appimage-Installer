@@ -1,4 +1,4 @@
-Lord Bin - AppImage installer v0.0.1 - Mozilla Public Licence v2
+Lord Bin - Universal AppImage Installer v0.1.0 - Mozilla Public Licence v2
 ---------------------------------------------------------------------------------------------------------
 Application used to automate the intergration of an AppImage to the system
 
