@@ -19,10 +19,25 @@ fi
 cp template.desktop $file.desktop
 
 # .desktop editor
-sed -i "s+~/Programs/*+~/Programs/$file/$file+g" $file.desktop
+sed -i "s+~/Programs/+~/Programs/$file/$file+g" $file.desktop
 
-#now the icon, use jpg
+#now the icon, use jpg or png
+read -p "[jpg / png]" icon
 
-sed -i "s+~/Programs/*/Icon+~/Programs/$file/icon.jpg+g" $file.desktop
+if [[ $icon == "jpg" ]]; then
+  mv Icon.jpg ~/Programs/$file/
+  sed -i "s+~/Icon+~/Programs/$file/Icon.jpg/+g" $file.desktop
+elif [[ $icon == "png" ]]; then
+  mv Icon.png ~/Programs/$file/
+  sed -i "s+~/Icon+~/Programs/$file/Icon.png/+g" $file.desktop
+fi
 
+#now the app name
+sed -i "s+Name of Application+$file+g" $file.desktop
+
+#moving .desktop files
+sudo cp $file.desktop /usr/share/applications
 mv $file.desktop ~/Programs/$file
+
+echo "Done, now exiting"
+exit
